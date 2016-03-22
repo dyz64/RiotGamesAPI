@@ -3,10 +3,10 @@ import requests
 
 class RiotStaticDataAPI(object):
 
-    def __init__(self, api_key, region=Constants.REGIONS['GLOBAL']):
+    def __init__(self, api_key, region=Constants.REGIONS['NA']):
         self.api_key = api_key
         self.region = region
-
+        self.proxy = "GLOBAL"
 
 #Calling the API using requests package
     def _request(self, api_url, params={}):
@@ -16,18 +16,19 @@ class RiotStaticDataAPI(object):
                 args[key] = value
         response = requests.get(
             Constants.STATIC_DATA_URL['base'].format(
-                proxy=self.region,
+                proxy=self.proxy,
                 region=self.region,
                 url=api_url
             ),
             params=args
             )
 
-        print(response.url)
+        #print(response.url)
         return response.json()
 
-    def get_rune_by_id(self, id):
-        api_url=Constants.STATIC_DATA_URL['summoner_name_by_id'].format(
-            version=Constants.API_VERSION['summoner'],
-            id=id
+    def get_rune_by_id(self, id, runeData):
+        api_url=Constants.STATIC_DATA_URL['runes_by_runeID'].format(
+            version=Constants.API_VERSION['static_data'],
+            runeID=id
         )
+        return self._request(api_url, runeData)

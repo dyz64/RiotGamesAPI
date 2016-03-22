@@ -22,7 +22,7 @@ STATIC_DATA_URL = {
 }
 
 #https://global.api.pvp.net/api/lol/static-data/na/v1.2/rune/5273?runeData=stats&api_key=ab158987-39f9-40a2-a3ae-5fcda9adebc7
-
+#https://GLOBAL.api.pvp.net/api/lol/static-data/NA/v1.2/rune/5345?runeData=stats&api_key=ab158987-39f9-40a2-a3ae-5fcda9adebc7
 API_VERSION = {
 
     'summoner': '1.4',
@@ -31,6 +31,6 @@ API_VERSION = {
 }
 
 REGIONS = {
-    'NA':'NA' ,
-    'GLOBAL':'GLOBAL'
+    'NA':'na' ,
+    'GLOBAL':'global'
 }
