@@ -1,12 +1,18 @@
 from RiotSummonerAPI import RiotSummonerAPI
 from RiotStaticDataAPI import RiotStaticDataAPI
+from PropertiesParser import PropertiesParser
+
 def main():
 
-    api=RiotSummonerAPI('ab158987-39f9-40a2-a3ae-5fcda9adebc7')
-    staticDataAPI=RiotStaticDataAPI('ab158987-39f9-40a2-a3ae-5fcda9adebc7')
+    parser = PropertiesParser('Properties.ini')
+    apiKey=parser.getProperties('API_Key', 'apiKey')
 
 
-    summonerName='tehpandavan'
+    api=RiotSummonerAPI(apiKey)
+    staticDataAPI=RiotStaticDataAPI(apiKey)
+
+
+    summonerName='wisegrandsky'
 
     resultByName = api.get_summoner_by_name(summonerName)
 
