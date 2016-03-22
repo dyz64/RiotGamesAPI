@@ -34,7 +34,7 @@ def main():
     for x in range(0, numRunePages):
         print("Rune Page #" + str(x+1) + " Name: " + runes[str(id)]['pages'][(x)]['name'])
 
-    print("THIS IS A TEST COMMIT MESSAGE")
+    print("THIS IS A TEST COMMIT MESSAGE21245124")
 
 if __name__ == "__main__":
     main()
