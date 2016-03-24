@@ -1,16 +1,23 @@
 from RiotSummonerAPI import RiotSummonerAPI
 from RiotStaticDataAPI import RiotStaticDataAPI
+from PropertiesParser import PropertiesParser
+import time
+
 def main():
 
-    api=RiotSummonerAPI('ab158987-39f9-40a2-a3ae-5fcda9adebc7')
-    staticDataAPI=RiotStaticDataAPI('ab158987-39f9-40a2-a3ae-5fcda9adebc7')
+    parser = PropertiesParser('Properties.ini')
+    apiKey=parser.getProperties('API_Key', 'apiKey')
 
 
-    summonerName='tehpandavan'
+    api=RiotSummonerAPI(apiKey)
+    staticDataAPI=RiotStaticDataAPI(apiKey)
+
+
+    summonerName='wisegrandsky'
 
     resultByName = api.get_summoner_by_name(summonerName)
 
-    print(type(resultByName))
+    # print(type(resultByName))
     print("resultByName: " + str(resultByName))
 
     id=resultByName[summonerName.replace(" ","")]['id']
@@ -20,27 +27,40 @@ def main():
     #print('resultByID: ' + str(resultByID))
 
     masteries = api.get_masteries_by_summoner_id(id)
-    print("Masteries: " + str(masteries))
+    # print("Masteries: " + str(masteries))
 
 
     runes = api.get_runes_by_id(id)
-    print(type(runes))
-    print("Rune: " + str(runes))
+    # print(type(runes))
+    #print("Rune: " + str(runes))
 
     runePage1=runes[str(id)]['pages'][1]
-    print(runePage1)
+    # print(runePage1)
+
+
 
     numRunePages=len(runes[str(id)]['pages'])
-    print(type(numRunePages))
-    print(numRunePages)
+    # print(type(numRunePages))
+    # print(numRunePages)
 
+    # for x in range(0, numRunePages):
+    #     print("Rune Page #" + str(x+1) + " Name: " + runes[str(id)]['pages'][(x)]['name'])
+
+    activeRunePage=''
     for x in range(0, numRunePages):
-        print("Rune Page #" + str(x+1) + " Name: " + runes[str(id)]['pages'][(x)]['name'])
+        activeRunePageCheck=runes[str(id)]['pages'][(x)]['current']
+        # print("activeRunePageCheck: " + str(activeRunePageCheck) + " Counter: " + str(x))
+        if activeRunePageCheck:
+            activeRunePage=runes[str(id)]['pages'][(x)]
+            break
 
+
+    print("Active Rune Page: " + str(activeRunePage))
 
     numRunesRunePage1=len(runePage1['slots'])
     listOfRuneNames={}
     for x in range(0, numRunesRunePage1):
+        time.sleep(4)
         runeID=runePage1['slots'][x]['runeId']
         #print("Rune ID: " + str(runeID))
         runeStats=staticDataAPI.get_rune_by_id(str(runeID), {'runeData' : 'stats'})
