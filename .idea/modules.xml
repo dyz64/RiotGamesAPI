@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/RiotGamesAPI.iml" filepath="$PROJECT_DIR$/.idea/RiotGamesAPI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Sandbox/.idea/Sandbox.iml" filepath="$PROJECT_DIR$/../Sandbox/.idea/Sandbox.iml" />
     </modules>
   </component>
 </project>
