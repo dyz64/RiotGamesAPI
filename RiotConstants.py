@@ -34,3 +34,6 @@ REGIONS = {
     'NA':'na' ,
     'GLOBAL':'global'
 }
+
+
+HI = {'test'}
