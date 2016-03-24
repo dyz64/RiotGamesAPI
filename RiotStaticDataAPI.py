@@ -23,7 +23,7 @@ class RiotStaticDataAPI(object):
             params=args
             )
 
-        #print(response.url)
+        print(response.url)
         return response.json()
 
     def get_rune_by_id(self, id, runeData):
